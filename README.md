@@ -1,3 +1,45 @@
+### Wallapop FIX
+
+In order to avoid that our legacy code use Genson serializer we delete the "magic":
+
+- Delete these files:
+```
+src/main/java/com/owlike/genson/ext/jaxrs/GensonJaxRSFeature.java
+src/main/java/com/owlike/genson/ext/jaxrs/GensonJsonConverter.java
+src/main/java/com/owlike/genson/ext/jaxrs/JerseyAutoDiscoverable.java
+src/main/java/com/owlike/genson/ext/jaxrs/UrlQueryParamFilter.java
+
+src/test/java/com/owlike/genson/ext/jaxrs/JaxRSIntegrationTest.java
+```
+
+
+- Modify where to deploy the artifact on `pom.xml`:
+```
+    <repository>
+      <id>sonatype-nexus-staging</id>
+      <name>Nexus Staging Repository</name>
+      <url>http://repository.wallapop.com/nexus/content/repositories/releases/</url>
+    </repository>
+```
+
+
+- Set artifact version. Current version is `1.4.6`:
+```
+pom.xml
+genson/pom.xml
+genson_scala/pom.xml
+```
+
+
+- `mvn deploy` (remember to set your nexus credentials on `~/.m2/settings.xml`
+
+
+- Use the new genson version from our domain bus library.
+
+
+
+
+
 [![Build Status](https://travis-ci.org/owlike/genson.svg?branch=master)](https://travis-ci.org/owlike/genson)
 
 #Genson
