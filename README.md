@@ -1,6 +1,6 @@
 ### Wallapop FIX
 
-In order to avoid that our legacy code use Genson serializer we delete the "magic":
+In order to avoid that magically some system start to use Genson serializer in undesired places we have removed the "magic":
 
 - Delete these files:
 ```
@@ -32,10 +32,6 @@ genson_scala/pom.xml
 
 
 - `mvn deploy` (remember to set your nexus credentials on `~/.m2/settings.xml`
-
-
-- Use the new genson version from our domain bus library.
-
 
 
 
